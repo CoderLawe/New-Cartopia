@@ -1,0 +1,16 @@
+{% extends "base_layout.html" %}
+{% load static %}
+
+{% block content %}
+<head> 
+	<title> Home! </title>
+	<link rel="stylesheet"  href="{% static 'css/base.css'%}"/>
+</head>
+<h1>Welcome to Cartopia!</h1>
+<p>New to the platform?</p>
+<p><a href="{% url 'accounts:signup' %}">Signup Here</a></p>
+<h1 class ="text-two">bhbhbh</h1>
+
+
+
+{% endblock %}

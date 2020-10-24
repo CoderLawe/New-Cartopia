@@ -1,0 +1,67 @@
+{% extends 'base_layout.html'%}
+
+{% block content %}
+
+	<div class="card">
+		<div class="article" style="background-color: white">
+			<div class="card-image">
+		<img src="{{article.thumb.url}}"/>
+			</div>
+		<h2>{{ article.manufacturer }}</h2>
+		<p>{{ article.body }}</p>
+		<p>{{ article.date }}</p>ee
+
+
+		</div>
+
+	</div>
+
+<!-- COMMENTS SECTION -->
+
+
+		 <div class="card-body">
+        {% if new_comment %}
+        <div class="alert alert-success" role="alert">
+          Your comment is awaiting moderation
+        </div>
+        {% else %}
+
+             <h3>Leave a comment below</h3>
+             <div class="card">
+
+        <form method="post" style="margin-top: 1.3em;">
+          {{ comment_form.as_p }}
+          {% csrf_token %}
+          <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+        </form>
+        {% endif %}
+             </div>
+      </div>
+
+
+
+
+<div class="row">
+
+        {% for comment in comments %}
+            <div class="col s4" style=" height: 400px;
+    overflow: hidden; width:400px;">
+                <div class="card">
+
+                    <div class="card-content">
+
+                        <p>  {{ comment.name }} Wrote  On {{comment.created_on}} </p>
+                        <p>{{ comment.comment}}</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#"></a>
+                    </div>
+                </div>
+
+        </div>
+        {% endfor %}
+    </div>
+
+
+
+{% endblock%}

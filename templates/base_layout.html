@@ -1,0 +1,55 @@
+{% load static  %}
+
+<html>
+
+<head>
+
+	  <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <title>Cartopia</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="{% static 'beta.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+
+</head>
+
+<body>
+	
+	<!--Navbar Toggleable-->
+    <nav class="navbar navbar-toggleable-md  bg-primary navbar-inverse bg-inverse  ">
+        <div class="nav-wrapper">
+            <a href="{% url 'list'%}" class="navbar-brand">CARTOPIA!</a>
+
+            {% if user.is_authenticated %}
+     <li><a class="nav-item nav-link navbar-brand" href="{% url 'create'%}">New Article</a></li>
+            <li> <form class = "logout-link" action = "{% url 'accounts:logout' %}" method="post">
+						{% csrf_token %}
+             <li><button type =  "submit" class="waves-effect waves-light btn">Logout</button></li>
+			</form>
+        <li><h5>Welcome  {{user}}! </h5></li>
+
+            {% else %}
+            <li><a href="{% url 'accounts:login'%}">Login</a></li>
+            <li><a href="{% url 'accounts:signup'%}">Signup</a></li>
+
+
+                {% endif %}
+        </div>
+    </nav>
+
+    {% block content %}
+
+		{% endblock %}
+
+	</body>
+</html>
