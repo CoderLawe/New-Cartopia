@@ -44,30 +44,222 @@
 		</div>
 -->
 
-<div class="row">
-        {% for article in articles %}
-            <div class="col s4" style=" height: 400px;
-    overflow: hidden; width:400px;">
-                <div class="card">
+{% block nav %}{% include 'articles/nav.html'%}{% endblock nav%}
+<style>
+.parallax {
+  /* The image used */
+  background-image: url("img_parallax.jpg");
 
+  /* Set a specific height */
+  height: 500px;
 
-                    <div class="card-image">
-                        <a href="{% url 'detail' slug=article.slug%}"><img src="{{ article.thumb.url }}" alt=""></a>
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</style>
+<!--
+<section class="slider2 cid-spFyNzmgwE" id="slider2-n">
+    
+
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-12">
+                <div class="carousel slide" id="spFVbM7ytI" data-interval="5000">
+                    
+                    <ol class="carousel-indicators">
+                        <li data-slide-to="0" class="active" data-target="#spFVbM7ytI"></li>
+                        <li data-slide-to="1" data-target="#spFVbM7ytI"></li>
+                        <li data-slide-to="2" data-target="#spFVbM7ytI"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item slider-image item active">
+                            <div class="item-wrapper">
+                                <img class="d-block w-100" src="{% static 'media/Alfa_Romeo_GTV6_Grand_Prix_01popJFK.jpg'%}">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5 class="mbr-section-subtitle mbr-fonts-style display-5">
+                                        <strong>Alfa Romeo GTV6</strong>
+                                    </h5>
+                                    <p class="mbr-section-text mbr-fonts-style display-7">
+                                        Click on the image to edit slides.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item slider-image item">
+                            <div class="item-wrapper">
+                                <img class="d-block w-100" src="{% static 'media/background5.jpg'%}">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5 class="mbr-section-subtitle mbr-fonts-style display-5">
+                                        <strong>Fixed-Height Slider</strong>
+                                    </h5>
+                                    <p class="mbr-section-text mbr-fonts-style display-7">
+                                        Click on the image to edit slides.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item slider-image item">
+                            <div class="item-wrapper">
+                                <img class="d-block w-100" src="{% static 'media/background8.jpg'%}">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5 class="mbr-section-subtitle mbr-fonts-style display-5">
+                                        <strong>Fixed-Height Slider</strong>
+                                    </h5>
+                                    <p class="mbr-section-text mbr-fonts-style display-7">
+                                        Click on the image to edit slides.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-content">
-                        <p> {{ article.manufacturer }}  {{ article.carmodel }}</p>
-                        <p>{{ article.snippet}}</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="{% url  'detail' slug=article.slug %}">Click here for more!</a>
-                    </div>
+                    <a class="carousel-control carousel-control-prev" role="button" data-slide="prev" href="#spFVbM7ytI">
+                        <span class="mobi-mbri mobi-mbri-arrow-prev" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control carousel-control-next" role="button" data-slide="next" href="#spFVbM7ytI">
+                        <span class="mobi-mbri mobi-mbri-arrow-next" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
-
-
+            </div>
         </div>
-        {% endfor %}
+    </div>
+</section>
+-->
+                        
+
+<section class="header13 cid-spFUe6O8Nd  mbr-fullscreen" id="header13-v">
+
+    
+
+    <div class="mbr-overlay parallax " style="opacity: 0.9; background-color: rgb(50, 135, 168); background-image: url('/assets/media/background15.jpg');"></div>
+
+    <div class="align-center container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+            {% for carousel in carousel_info %} <!--PUT THIS INTO ADMIN SECTION-->
+                <h1 class="mbr-section-title mbr-fonts-style mb-3 display-1 "><strong>{{carousel.title}}</strong></h1>
+                <p class="mbr-text mbr-fonts-style mb-3 display-7">
+                {{carousel.body |safe }}
+                </p>
+    <!--
+                <div class="social-row display-7 mt-5">
+                    <div class="soc-item">
+                        <a href="https://twitter.com/mobirise" target="_blank">
+                            <span class="mbr-iconfont socicon socicon-facebook"></span>
+                        </a>
+                    </div>
+                    <div class="soc-item">
+                        <a href="https://twitter.com/mobirise" target="_blank">
+                            <span class="mbr-iconfont socicon socicon-twitter"></span>
+                        </a>
+                    </div>
+                    <div class="soc-item">
+                        <a href="https://twitter.com/mobirise" target="_blank">
+                            <span class="mbr-iconfont socicon socicon-instagram"></span>
+                        </a>
+                    </div>
+                    
+                </div>
+     -->
+                                    <a class="btn btn-outline-dark" href="{% url 'update_title' carousel.id %}">Edit</a>
+            {% endfor %}
+
+            </div>
+        </div>
     </div>
 
+</section>
+
+<h1>
+</h1>
+<div class="container">
+<div class="row" >
+<!---
+           {% for article in articles %}
+
+<div class="card сol-12 col-md-6 col-lg-4">
+        <a href="{% url 'detail' slug=article.slug%}"> <img class="thumbnail" src="{{article.thumb.url}}"></a>
+  <div class="card-body">
+    <h5 class="card-title">{{article.manufacturer |safe }}</h5>
+            <p class=" text-muted"> Written By: {{ article.author }}  |On {{ article.date }}</p>
+
+    <hr>
+    <p class="card-text">{{article.snippet |safe }}</p>
+    <hr>
+        <a href="{% url 'detail' slug=article.slug%}" class="btn btn-success">Read More</a>
+
+  </div>
+</div>
+<br>
+{% endfor %}
+-->
+{% for article in articles%}
+<div class="col-md-4 ">
+    <div class="card">
+
+ <a href="{% url 'detail' slug=article.slug%}"> 
+ {% if article.thumb %}
+  <img src='{{article.thumb.url}}'>
+
+  {% endif %}
+ </a>
+  <div class="card-body">
+  <div class="card-title">
+    <p>{{article.manufacturer}}</p>
+    <hr>
+    <p class="text-muted"> Written By {{article.author }} on -{{article.date}}</p>
+
+      <hr>
+
+  </div
+    <p class="card-text">{{article.snippet |safe }}</p>
+    <a class="btn btn-outline-dark float-left" href="{% url 'detail' slug=article.slug%}"> See More</a>
+{% if user.is_authenticated %}
+    {% if user.id == article.author.id %}
+
+   <a class="btn btn-outline-dark" href="{% url 'update_article' article.id%}"> Edit</a>
+  <a class="btn btn-outline-danger" href="{% url 'delete_article' article.id%}"> Delete</a>
+    {% endif %}
+{% endif %}
+  </div>
+</div>
+</div>
+{% endfor %}
+
+<!--
+<div class="row">
+           {% for article in articles %}
+    <div class=" card col-md-4">
+        <a href="{% url 'detail' slug=article.slug%}"> <img class="thumbnail" src="{{article.thumb.url}}"></a>
+        <div class="box-element product">
+		<div class='card card-title'>
+		<br>
+            <h6><strong>{{article.manufacturer |safe }}</strong></h6>
+		</div>
+            <hr>
+				{{article.snippet |safe }}
+			<hr>
+
+
+            <a class="btn btn-outline-success " href="{% url 'detail' slug=article.slug%}">See More!</a>
+            <h4 style="display: inline:block; float: right;">
+			
+               </h4>
+
+        </div>
+
+
+    </div>
+    
+
+{% endfor %}
+-->
+</div>
+</div>
+
+<!--{% block newsletter %}{% include 'articles/index.html' %}{% endblock newsletter %}-->
 </body>
 
-{% endblock %}
+
+{% endblock content %}

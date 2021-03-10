@@ -1,0 +1,35 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+{% block content %}
+{% block navbar %}{% include 'articles/nav.html' %}{% endblock navbar%}
+
+<br>
+<br>
+<br>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Search Results for <span class="text-info">"{{request.GET.keyword}}"</span></h3>
+            <hr>
+            {% for result in results %}
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="{% url 'detail' slug=result.slug %}"><img src="{{result.thumb.url}}" class="img-fluid" alt="">
+                    </a>
+                </div>
+                <div class="col-md-9">
+                    <h4><a href="{% url 'detail' slug=result.slug %}">{{result.manufacturer}}</a></h4>
+                   <p>{{result.snippet |safe }}</p>
+             <a href ="{% url 'detail' slug=result.slug%}"class="btn btn-outline-secondary add-btn update-cart"> Read More</a>
+                </div>
+
+            </div>
+
+                <hr>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

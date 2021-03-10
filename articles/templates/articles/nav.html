@@ -1,0 +1,71 @@
+
+{% load static %}
+
+{% block nav %}
+      
+  <section class="menu menu2 cid-snFWiYGhWx" once="menu" id="menu2-7">
+    
+    <nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
+        <div class="container">
+            <div class="navbar-brand">
+                <span class="navbar-logo">
+                    <a href="{% url 'list' %}">
+                        <img src="{% static 'media/image1-80x80.png'%}" alt="Mobirise" style="height: 3rem;">
+                    </a>
+                </span>
+                <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-7" href="{% url 'list' %}">Sosah</a></span>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
+                <li>
+                    <form class="form-inline my-2 my-lg-0" action="{% url 'search'%}" method="GET">
+            <input name="keyword" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" required>
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            </li>
+
+                <li class="nav-item"><a class="nav-link link text-white display-4" href="{% url 'list'%}">
+                            Home</a></li>
+                {% if user.is_authenticated %}
+
+                    {% if user.id == article.author.id%}
+                <li class="nav-item"><a class="nav-link link text-white display-4" href="{% url 'list'%}">
+                            Admin</a></li>
+                            {% endif %}
+                {% endif %}
+                
+                <li class="nav-item"><a class="nav-link link text-white display-4" href="{% url 'about' %}">
+                            About us</a></li>
+                        
+
+                            {% if user.is_authenticated %}
+<li class="nav-item active">
+           <form class = "logout-link" action = "{% url 'accounts:logout' %}" method="post">
+						{% csrf_token %}
+              <button type =  "submit" class="btn btn-warning btn-sm">Logout</button>
+			</form>
+      </li>
+      {% else %}
+                          <li class="nav-item"><a class="nav-link link text-white display-4" href="{% url 'accounts:login'%}">Login</a>
+                        <li class="nav-item"><a class="nav-link link text-white display-4" href="{% url 'accounts:signup'%}">Signup</a>
+
+
+                            {% endif %}
+                    </li>
+                    <ul></ul>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+</section>
+
+{% endblock nav %}

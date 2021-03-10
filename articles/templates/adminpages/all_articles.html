@@ -1,0 +1,39 @@
+{% extends 'adminpages/adminbase.html'%}
+
+{% block content %}
+{% block nav %}{% include 'adminpages/adminnav.html' %}{% endblock nav%}
+
+<br>
+<br>
+
+
+<table class="table">
+
+    <thead style='background-color:#3287a8;'>
+        <tr>
+            <th>No.</th>
+            <th>Article</th>
+            <th>Date Written</th>
+            <th>Update</th>
+            <th>Delete</th>
+
+        </tr>
+    </thead>
+
+    {% for article in articles %}
+                    <tr>
+                        <td> {{forloop.counter}}</td>
+                        <td>{{article.manufacturer}}</td>
+                        <td>{{article.date}}</td>
+                        <td><a class="btn btn-sm btn-dark" href="{% url 'update_article' article.id%}">Update</a></td>
+                        <td><a class="btn btn-sm btn-danger" href="{% url 'delete_article' article.id %}">Delete</a></td>
+
+
+
+
+                    </tr>
+    {% endfor %}
+
+</table>
+
+{% endblock content %}

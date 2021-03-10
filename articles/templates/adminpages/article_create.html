@@ -1,15 +1,26 @@
  {% extends 'base_layout.html' %}
 
 {% block content%}
+{% block nav %}{% include 'adminpages/adminnav.html' %}{% endblock nav%}
+
  <h2>Create An Awesome new article</h2>
+
+ <br>
+ <br>
+ <br>
  <div class="card">
 <div class = "create-article">
-	<form class="site-form" action="{% url 'create' %}" method="post" enctype="multipart/form-data">
+	<form class="site-form" action="" method="post" enctype="multipart/form-data">
 		{% csrf_token %}
-		{{form}}
+		{{form2.media}}
+
+		{{form2.as_p}}
+
 		<input type="submit" value="create">
 	</form>
 </div>
  </div>
+
+ 
 
 {% endblock %}

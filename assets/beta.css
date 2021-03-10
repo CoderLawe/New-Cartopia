@@ -67,3 +67,22 @@ nav button{
 .article h2{
 	font-size: 1.2px;
 }
+
+
+.top-colour{
+    background-color:#3287a8;
+}
+
+.scrolling {
+	/* The image used */
+	background-image: url("media/2.jpg");
+  
+	/* Set a specific height */
+	height: 500px;
+  
+	/* Create the parallax scrolling effect */
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+  }

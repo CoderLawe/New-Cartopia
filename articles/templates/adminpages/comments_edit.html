@@ -1,0 +1,27 @@
+{% extends 'adminpages/adminbase.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+{% block nav %}{% include 'adminpages/adminnav.html' %}{% endblock nav%}
+<br>
+<br>
+<br>
+<div class="row">
+	<div class="col-md-6">
+		<div class="card card-body">
+		<div class='card card-title'>
+		</div>
+			<form action="" method="POST">
+            	{% csrf_token %}
+				{% for field in form %}
+					{{field.label}}
+					{{field|add_class:'form-control'}}
+				
+				{% endfor %}
+				<hr>
+				<input type="submit" class="btn btn-info">
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock content %}

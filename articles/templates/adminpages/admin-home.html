@@ -1,0 +1,60 @@
+{% extends 'adminpages/adminbase.html'%}
+
+{% block content %}
+{% block nav %}{% include 'adminpages/adminnav.html' %}{% endblock nav%}
+<br>
+<br>
+<br>
+{% block info %} {% include 'adminpages/top_info.html'%}<h1></h1>{% endblock info%}
+
+<hr>
+<div class='row'>
+    <div class='col-md-6 border-right border-dark'>
+    <h2 class='text-muted'> Number of Hits per article</h2>
+    <hr>
+    {% block chart %}{% include 'adminpages/chart.html' %}{% endblock chart%}
+    </div>
+
+
+    <div class='col-md-6 border-bottom border-dark'>
+        <div>
+        <h2 class='text-muted float-left'> Newsletter signees</h2>
+        
+        <a class='btn btn-lg btn-warning float-center ' href={% url 'export' %}>Export to File</a>
+        </div>
+
+
+        <table class="table">
+
+            <thead style='background-color:#3287a8;'>
+                <tr>
+                    <th> No.</th>
+                    <th>Name</th>
+                    <th>E-mail Address</th>
+                    <th>Date joined</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+
+                </tr>
+            </thead>
+
+            {% for newsletter in newsletter %}
+                            <tr>
+                                <td> {{forloop.counter}}</td>
+                                <td>{{newsletter.name}}</td>
+                                <td>{{newsletter.email}}</td>
+                                <td>{{newsletter.date}}</td>
+
+                                <td><a class="btn btn-sm btn-dark" href="#">Update</a></td>
+                                <td><a class="btn btn-sm btn-danger" href="#">Delete</a></td>
+
+
+
+
+                            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+</div>
+{% endblock content%}

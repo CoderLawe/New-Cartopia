@@ -1,0 +1,53 @@
+{% extends 'adminpages/adminbase.html' %}
+
+{% load widget_tweaks %}
+
+
+{% block content %}
+
+{% block nav %}{% include 'adminpages/adminnav.html' %}{% endblock nav%}
+
+<br>
+<br>
+<br>
+<div>
+<h2> Filter and Edit your comments here</h2>
+<p class="text-muted"> Hint: For comments that need moderation, set active to no</p>
+<div>
+
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+			<form method="get">
+		    {% for field in filter.form %}
+		    	{{field.label}}
+		    	{{field|add_class:'form-control-sm'}}
+		    {% endfor %}
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+		</div>
+	</div>
+	
+</div>
+
+<br>
+<div class="row">
+{% for comment in comment %}
+<div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+  <div class="card-header" style='background-color:#3287a8;'>{{comment.name}}</div>
+  <div class=text-muted><p> Email - {{comment.email}}</p></div>
+  <div class="card-body">
+    <h5 class="card-title">Article - {{comment.article}}</h5>
+    <p class="card-text">{{comment.snippet}}</p>
+	<hr>
+	<a class="btn  btn-success " href={% url 'edit' pk=comment.id%}> Edit</a>
+	<a class="btn btm-sm btn-danger float-right" href={% url 'delete_comment' pk=comment.id%}> Delete</a>
+  <ul></ul>
+
+  </div>
+</div>
+
+{% endfor %}
+<br>
+</div>
+{% endblock content %}

@@ -1,67 +1,86 @@
 {% extends 'base_layout.html'%}
 
+{% load widget_tweaks %}
+
 {% block content %}
 
-	<div class="card">
-		<div class="article" style="background-color: white">
-			<div class="card-image">
-		<img src="{{article.thumb.url}}"/>
-			</div>
-		<h2>{{ article.manufacturer }}</h2>
-		<p>{{ article.body }}</p>
-		<p>{{ article.date }}</p>ee
+{% block navbar %}{% include 'articles/nav.html' %}{% endblock navbar%}
+<br>
+<br>
+<br>
+<br>
+
+<!--Details bit -->
+<div class="container box-element product scrolling">
+
+  <div class="row">
+    <div class="card  sm-12 border-right border-bottom border-left">
+        <div class='card-image'> 
+        <img src='{{article.thumb.url}}'>
+        </div>
+      <div class="card-body">
+        <h1>{{article.manufacturer}}</h1>
+        <p class=" text-muted"> Written By: {{ article.author }} On | {{ article.date }} {{views}}</p>
+        <hr>
+        <div class='container-fixed'>
+        <div class="card-text ">{{ article.body | safe }}</div>
+        <div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
-		</div>
 
-	</div>
+
 
 <!-- COMMENTS SECTION -->
 
 
-		 <div class="card-body">
+		 <div class= "card-body border-right border-bottom border-left">
         {% if new_comment %}
         <div class="alert alert-success" role="alert">
           Your comment is awaiting moderation
         </div>
         {% else %}
+   
 
              <h3>Leave a comment below</h3>
-             <div class="card">
+             <div class="card col-md-6">
 
         <form method="post" style="margin-top: 1.3em;">
-          {{ comment_form.as_p }}
           {% csrf_token %}
+				{% for field in comment_form %}
+					{{field.label}}
+					{{field|add_class:'form-control'}}
+
+          				{% endfor %}
+
           <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
         </form>
         {% endif %}
              </div>
       </div>
 
-
-
-
 <div class="row">
 
-        {% for comment in comments %}
-            <div class="col s4" style=" height: 400px;
-    overflow: hidden; width:400px;">
-                <div class="card">
+{% for comment in comments%}
+		<div class="col-md-3">
+			<div class="card text-center text-white bg-secondary mb-3" id="total-orders">
+			  	<div class="card-header top-colour">
+			  		<h5 class="card-title">Written By {{comment.name}}</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3 class="card-title">{{comment.comment}}</h3>
 
-                    <div class="card-content">
 
-                        <p>  {{ comment.name }} Wrote  On {{comment.created_on}} </p>
-                        <p>{{ comment.comment}}</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#"></a>
-                    </div>
-                </div>
+			  	</div>
+			</div>
+		</div>
+    
+{% endfor %}
 
-        </div>
-        {% endfor %}
-    </div>
-
+</div>
 
 
 {% endblock%}
